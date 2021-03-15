@@ -15,7 +15,7 @@ const AuthStateApp: FC = ({ children }) => {
   useEffect(() => onAuthUIStateChange((nextAuthState, authData) => {
     setAuthState(nextAuthState);
     setUser(authData);
-    console.log(authDatagd);
+    console.log(authData);
   }), []);
 
   return authState === AuthState.SignedIn && user ? (
