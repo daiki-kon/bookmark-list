@@ -1,12 +1,8 @@
 import React, { FC, useEffect } from 'react';
-import Amplify from 'aws-amplify';
 import {
   AmplifyAuthenticator, AmplifyConfirmSignUp, AmplifySignUp, AmplifySignIn, AmplifyForgotPassword,
 } from '@aws-amplify/ui-react';
 import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
-import awsconfig from './aws-exports';
-
-Amplify.configure(awsconfig);
 
 const AuthStateApp: FC = ({ children }) => {
   const [authState, setAuthState] = React.useState<AuthState>();
