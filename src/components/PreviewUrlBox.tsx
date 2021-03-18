@@ -11,7 +11,7 @@ export type PreviewUrlBoxProps = {
 }
 
 const StyledDiv = styled.div`
-  max-width: 300px !important;
+  width: 200px !important;
   position: relative;
 `;
 

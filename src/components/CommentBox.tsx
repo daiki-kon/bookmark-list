@@ -18,10 +18,13 @@ const StyledForm = styled(Form)`
   position:relative;
   width: 100% !important;
   height: 100% !important;
+  max-width: 250px !important;
 `;
 
 const StyledTextArea = styled(TextArea)`
   resize: none !important;
+  min-height: 263px !important;
+  max-width: 250px !important;
   width: 100%;
   height: 100%;
 `;
@@ -36,6 +39,8 @@ const StyledButton = styled(Button)`
 
 const StyledContainer = styled(Container)`
   resize: none !important;
+  min-height: 263px !important;
+  max-width: 250px !important;
   width: 100%;
   height: 100%;
 `;
@@ -46,12 +51,12 @@ export const CommentBox: FC<CommentBoxProps> = (props) => {
   } = props;
 
   return (
-    <div>
+    <StyledForm>
       {isEdit ? (
-        <StyledForm>
+        <>
           <StyledTextArea placeholder="コメント" onChange={onChange} value={commentMarkdown} />
           <StyledButton circular icon="save" onClick={onClickSave} />
-        </StyledForm>
+        </>
       ) : (
         <StyledContainer>
           {/* eslint-disable-next-line react/no-danger */}
@@ -59,6 +64,6 @@ export const CommentBox: FC<CommentBoxProps> = (props) => {
           <StyledButton circular icon="edit" onClick={onClickEdit} />
         </StyledContainer>
       )}
-    </div>
+    </StyledForm>
   );
 };
