@@ -23,7 +23,7 @@ const Wrapper = styled.div`
 
 export const BookmarkBox: FC<BookmarkBoxProps> = (props) => {
   const {
-    bookmarkID, bookmarkURL,
+    bookmarkURL,
   } = props;
 
   return (
