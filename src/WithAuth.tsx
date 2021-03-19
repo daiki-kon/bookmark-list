@@ -3,21 +3,20 @@ import {
   AmplifyAuthenticator, AmplifyConfirmSignUp, AmplifySignUp, AmplifySignIn, AmplifyForgotPassword,
 } from '@aws-amplify/ui-react';
 import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
+import { Route } from 'react-router';
+import { BookmarksPage } from './pages/BookmarksPage';
 
-const AuthStateApp: FC = ({ children }) => {
+const AuthStateApp: FC = () => {
   const [authState, setAuthState] = React.useState<AuthState>();
-  const [user, setUser] = React.useState<object | undefined>();
+  const [user, setUser] = React.useState<any | undefined>();
 
-  useEffect(() => onAuthUIStateChange((nextAuthState, authData) => {
+  useEffect(() => onAuthUIStateChange((nextAuthState, authData: any) => {
     setAuthState(nextAuthState);
     setUser(authData);
-    console.log(authData);
   }), []);
 
   return authState === AuthState.SignedIn && user ? (
-    <>
-      {children}
-    </>
+    <Route exact path="/bookmarks/:userName" render={() => <BookmarksPage />} />
   ) : (
     <AmplifyAuthenticator usernameAlias="email">
       <AmplifySignIn

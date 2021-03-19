@@ -37,8 +37,6 @@ export const PreviewUrlBox: FC<PreviewUrlBoxProps> = (props) => {
     siteUrl, imageUrl, title,
   } = props;
 
-  console.log(imageUrl);
-
   return (
     <StyledDiv>
       <Image src={imageUrl} />
