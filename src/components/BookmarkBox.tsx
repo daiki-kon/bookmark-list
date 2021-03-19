@@ -19,6 +19,8 @@ const Wrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   max-width: 450px !important;
+  margin-left: 20px;
+  margin-top: 10px;
 `;
 
 export const BookmarkBox: FC<BookmarkBoxProps> = (props) => {

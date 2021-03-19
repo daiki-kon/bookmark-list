@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import styled from 'styled-components';
 import { FetchBookmarksResponse } from '../apiClients';
 import { BookmarkBox } from './BookmarkBox';
 
@@ -7,11 +8,16 @@ export type BookmarksAreaProps = {
 
 }
 
+const StyledArea = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
+
 export const BookmarksArea: FC<BookmarksAreaProps> = (props) => {
   const { bookmarks } = props;
 
   return (
-    <>
+    <StyledArea>
       {bookmarks?.map((item) => (
         <BookmarkBox
           key={item.bookmarkID}
@@ -21,6 +27,6 @@ export const BookmarksArea: FC<BookmarksAreaProps> = (props) => {
           tags={item.tags}
         />
       ))}
-    </>
+    </StyledArea>
   );
 };
