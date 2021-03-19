@@ -10,6 +10,7 @@ import 'semantic-ui-css/semantic.min.css';
 
 export type CreateBookmarkModalProps = {
   userName: string;
+  createBookmark: (bookmarkURL: string, tagsIDs: string[]) => Promise<void>;
 }
 
 type FormInput = {
@@ -17,7 +18,7 @@ type FormInput = {
 }
 
 export const CreateBookmarkModal: FC<CreateBookmarkModalProps> = (props) => {
-  const { userName } = props;
+  const { userName, createBookmark } = props;
   const [isOpen, setIsOpen] = useState(false);
   const [url, setUrl] = useState<string>('');
 
@@ -72,6 +73,7 @@ export const CreateBookmarkModal: FC<CreateBookmarkModalProps> = (props) => {
             if (result === false) return;
             setValue('bookmarkURL', '');
             setIsOpen(false);
+            createBookmark(url, []);
           }}
         />
       </Modal.Actions>

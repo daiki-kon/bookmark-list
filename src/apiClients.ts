@@ -54,3 +54,34 @@ export const fetchBookmarks = async (query: FetchBookmarksQuery): Promise<FetchB
 
   return response.data as FetchBookmarksResponse;
 };
+
+export type PostBookmarkRequest = {
+  userName: string;
+  requestBody: {
+    bookmarkURL: string;
+    tagsIDs: string[];
+  }
+}
+
+export type PostBookmarkResponse = {
+  bookmarkID: string;
+  registeredDate: string;
+};
+
+// eslint-disable-next-line max-len
+export const postBookmark = async (request: PostBookmarkRequest): Promise<PostBookmarkResponse> => {
+  const apiName = auth.API.endpoints[0].name;
+  const path = `/user/${request.userName}/bookmark`;
+  const parameter = {
+    response: true,
+    header: 'Content-Type: application/json',
+    body: {
+      bookmarkURL: request.requestBody.bookmarkURL,
+      tagsIDs: request.requestBody.tagsIDs,
+    },
+  };
+
+  const response = await API.post(apiName, path, parameter);
+
+  return response.data as PostBookmarkResponse;
+};
