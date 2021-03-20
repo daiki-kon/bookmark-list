@@ -13,7 +13,8 @@ code {
 }
 
 amplify-sign-out {
+  top: 0;
   right: 0;
   margin-right: 10px;
-  position: fixed;
+  position: absolute;
 }
