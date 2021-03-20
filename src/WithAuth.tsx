@@ -1,12 +1,16 @@
 import React, { FC, useEffect } from 'react';
 import {
-  AmplifyAuthenticator, AmplifyConfirmSignUp, AmplifySignUp, AmplifySignIn, AmplifyForgotPassword,
+  AmplifyAuthenticator,
+  AmplifyConfirmSignUp,
+  AmplifySignUp,
+  AmplifySignIn,
+  AmplifyForgotPassword,
+  AmplifySignOut,
 } from '@aws-amplify/ui-react';
 import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
-import { Route } from 'react-router';
-import { BookmarksPage } from './pages/BookmarksPage';
+import { Redirect } from 'react-router';
 
-const AuthStateApp: FC = () => {
+const AuthStateApp: FC = ({ children }) => {
   const [authState, setAuthState] = React.useState<AuthState>();
   const [user, setUser] = React.useState<any | undefined>();
 
@@ -16,7 +20,11 @@ const AuthStateApp: FC = () => {
   }), []);
 
   return authState === AuthState.SignedIn && user ? (
-    <Route exact path="/bookmarks/:userName" render={() => <BookmarksPage />} />
+    <>
+      <AmplifySignOut>sign out</AmplifySignOut>
+      <Redirect to={`/bookmarks/${user.username}`} />
+      {children}
+    </>
   ) : (
     <AmplifyAuthenticator usernameAlias="email">
       <AmplifySignIn
