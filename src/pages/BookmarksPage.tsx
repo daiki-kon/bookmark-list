@@ -18,7 +18,7 @@ export const BookmarksPage: FC = () => {
       <CreateBookmarkModalContainer userName={userName} createBookmark={createBookmark} />
       {bookmarks?.length === 0
         ? <p>何もないよー</p>
-        : <BookmarksArea bookmarks={bookmarks} />}
+        : <BookmarksArea userName={userName} bookmarks={bookmarks} />}
     </StyledWrapper>
   );
 };

@@ -4,6 +4,7 @@ import { FetchBookmarksResponse } from '../apiClients';
 import { BookmarkBox } from './BookmarkBox';
 
 export type BookmarksAreaProps = {
+  userName: string;
   bookmarks: FetchBookmarksResponse
 
 }
@@ -14,12 +15,13 @@ const StyledArea = styled.div`
 `;
 
 export const BookmarksArea: FC<BookmarksAreaProps> = (props) => {
-  const { bookmarks } = props;
+  const { userName, bookmarks } = props;
 
   return (
     <StyledArea>
       {bookmarks?.map((item) => (
         <BookmarkBox
+          userName={userName}
           key={item.bookmarkID}
           bookmarkID={item.bookmarkID}
           bookmarkURL={item.bookmarkURL}

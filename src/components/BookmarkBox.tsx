@@ -7,6 +7,7 @@ import { CommentBoxContainer } from '../containers/CommentBoxContainer';
 import { PreviewUrlBoxContainer } from '../containers/PreviewUrlBoxContainer';
 
 export type BookmarkBoxProps = {
+  userName: string;
   bookmarkID: string;
   bookmarkURL: string;
   registeredDate: string;
@@ -25,13 +26,13 @@ const Wrapper = styled.div`
 
 export const BookmarkBox: FC<BookmarkBoxProps> = (props) => {
   const {
-    bookmarkURL,
+    bookmarkURL, userName, bookmarkID,
   } = props;
 
   return (
     <Wrapper>
       <PreviewUrlBoxContainer bookmarkURL={bookmarkURL} />
-      <CommentBoxContainer />
+      <CommentBoxContainer userName={userName} bookmarkID={bookmarkID} />
     </Wrapper>
   );
 };

@@ -21,6 +21,12 @@ const auth = {
       },
     ],
   },
+  Storage: {
+    AWSS3: {
+      bucket: process.env.REACT_APP_S3_MARKDOWN_BUCKET_NAME,
+      region: process.env.REACT_APP_AWS_PROJECT_REGION,
+    },
+  },
 };
 
 export default auth;
