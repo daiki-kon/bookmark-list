@@ -2,7 +2,7 @@ import React, { FC, useState, useEffect } from 'react';
 import Amplify, { Auth, Storage } from 'aws-amplify';
 import marked from 'marked';
 
-type UseCommentResponse = [string, string, () => void, (markdown: string) => void]
+type UseCommentResponse = [string, string, () => Promise<void>, (markdown: string) => void]
 
 export const useComment = (
   { userName, bookmarkID } : {userName: string, bookmarkID : string},
@@ -47,8 +47,8 @@ export const useComment = (
     setCommentMarkdown(text);
   };
 
-  const saveMarkdown = (): void => {
-    console.log('save');
+  const saveMarkdown = async (): Promise<void> => {
+    const result = await Storage.put(`${userName}/${bookmarkID}.md`, `${commentMarkdown}`);
   };
 
   const onChangeMarkdown = (markdown: string): void => {
