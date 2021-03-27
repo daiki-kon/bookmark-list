@@ -12,7 +12,7 @@ export type UseBookmarksResponse = [
 
 export const useBookmarks = ({ userName }:{userName: string}): UseBookmarksResponse => {
   const [bookmarks, setBookmarks] = useState<FetchBookmarksResponse>([]);
-  const [isFetching, setIsFetching] = useState<boolean>(true);
+  const [isFetching, setIsFetching] = useState<boolean>(false);
   const setFetchBookmarksResponse = async (name: string) => {
     setIsFetching(true);
     const response: FetchBookmarksResponse = await fetchBookmarks({ userName: name });

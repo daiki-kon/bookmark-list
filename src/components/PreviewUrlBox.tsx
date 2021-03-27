@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
-import React, { FC, useEffect } from 'react';
-import { Image, Dimmer, Loader } from 'semantic-ui-react';
+import React, { FC } from 'react';
+import { Image, Loader } from 'semantic-ui-react';
 import 'semantic-ui-css/semantic.min.css';
 import styled from 'styled-components';
 
@@ -8,6 +8,7 @@ export type PreviewUrlBoxProps = {
   siteUrl: string;
   imageUrl?: string;
   title?: string;
+  isFetching: boolean;
 }
 
 const StyledDiv = styled.div`
@@ -34,15 +35,22 @@ const StyledLink = styled.a`
 
 export const PreviewUrlBox: FC<PreviewUrlBoxProps> = (props) => {
   const {
-    siteUrl, imageUrl, title,
+    siteUrl, imageUrl, title, isFetching,
   } = props;
 
   return (
     <StyledDiv>
-      <Image src={imageUrl} />
-      <StyledTitle>{title}</StyledTitle>
-      {/* eslint-disable-next-line react/jsx-no-target-blank */}
-      <StyledLink href={siteUrl} target="_blank" />
+      { isFetching === true
+        ? (
+          <Loader active />
+        ) : (
+          <>
+            <Image src={imageUrl} />
+            <StyledTitle>{title}</StyledTitle>
+            {/* eslint-disable-next-line react/jsx-no-target-blank */}
+            <StyledLink href={siteUrl} target="_blank" />
+          </>
+        )}
     </StyledDiv>
   );
 };
