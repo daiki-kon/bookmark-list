@@ -5,10 +5,10 @@ import {
   AmplifySignUp,
   AmplifySignIn,
   AmplifyForgotPassword,
-  AmplifySignOut,
 } from '@aws-amplify/ui-react';
 import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
 import { Redirect } from 'react-router';
+import { Header } from './components/Header';
 
 const AuthStateApp: FC = ({ children }) => {
   const [authState, setAuthState] = React.useState<AuthState>();
@@ -21,7 +21,7 @@ const AuthStateApp: FC = ({ children }) => {
 
   return authState === AuthState.SignedIn && user ? (
     <>
-      <AmplifySignOut>sign out</AmplifySignOut>
+      <Header userName={user.username} />
       <Redirect to={`/bookmarks/${user.username}`} />
       {children}
     </>
