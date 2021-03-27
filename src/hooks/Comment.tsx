@@ -13,7 +13,6 @@ export const useComment = (
     customPrefix: {
       public: '',
     },
-    // ...
   });
 
   marked.setOptions({
