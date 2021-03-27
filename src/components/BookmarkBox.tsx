@@ -1,6 +1,5 @@
 /* eslint-disable max-len */
-import React, { FC, useEffect } from 'react';
-import { Image, Dimmer, Loader } from 'semantic-ui-react';
+import React, { FC } from 'react';
 import 'semantic-ui-css/semantic.min.css';
 import styled from 'styled-components';
 import { CommentBoxContainer } from '../containers/CommentBoxContainer';
@@ -19,9 +18,12 @@ export type BookmarkBoxProps = {
 const Wrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  max-width: 450px !important;
+  max-width: 450px;
   margin-left: 20px;
   margin-top: 10px;
+  border-radius: .28571429rem;
+  box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
+  padding: 5px;
 `;
 
 export const BookmarkBox: FC<BookmarkBoxProps> = (props) => {

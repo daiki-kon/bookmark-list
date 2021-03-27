@@ -7,11 +7,16 @@ import {
   Button, Modal, Form,
 } from 'semantic-ui-react';
 import 'semantic-ui-css/semantic.min.css';
+import styled from 'styled-components';
 
 export type CreateBookmarkModalProps = {
   userName: string;
   createBookmark: (bookmarkURL: string, tagsIDs: string[]) => Promise<void>;
 }
+
+const StyledAddButton = styled(Button)`
+  margin-left: 10px !important;
+`;
 
 type FormInput = {
   bookmarkURL: string;
@@ -41,7 +46,7 @@ export const CreateBookmarkModal: FC<CreateBookmarkModalProps> = (props) => {
       onClose={() => setIsOpen(false)}
       onOpen={() => setIsOpen(true)}
       open={isOpen}
-      trigger={<Button>追加</Button>}
+      trigger={<StyledAddButton>追加</StyledAddButton>}
     >
       <Modal.Header>新しいBookmarkを追加</Modal.Header>
       <Modal.Content>

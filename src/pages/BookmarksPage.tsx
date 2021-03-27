@@ -7,6 +7,7 @@ import { CreateBookmarkModalContainer } from '../containers/CreateBookmarkModalC
 
 const StyledWrapper = styled.div`
   width: 100%;
+  margin-top: 20px;
 `;
 
 export const BookmarksPage: FC = () => {
