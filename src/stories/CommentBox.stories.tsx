@@ -4,14 +4,13 @@ import React from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
 
 import { CommentBox, CommentBoxProps } from '../components/CommentBox';
-import { CommentBoxContainer, CommentBoxContainerProps } from '../containers/CommentBoxContainer';
 
 export default {
   title: 'CommentBox',
-  component: CommentBoxContainer,
+  component: CommentBox,
 } as Meta;
 
-const Template: Story<CommentBoxContainerProps> = (args) => <CommentBoxContainer {...args} />;
+const Template: Story<CommentBoxProps> = (args) => <CommentBox {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {
