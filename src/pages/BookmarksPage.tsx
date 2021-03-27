@@ -1,5 +1,9 @@
 import React, { FC } from 'react';
 import { useParams } from 'react-router-dom';
+import {
+  Loader,
+} from 'semantic-ui-react';
+import 'semantic-ui-css/semantic.min.css';
 import styled from 'styled-components';
 import { BookmarksArea } from '../components/BookmarksArea';
 import { useBookmarks } from '../hooks/Bookmarks';
@@ -12,13 +16,15 @@ const StyledWrapper = styled.div`
 
 export const BookmarksPage: FC = () => {
   const { userName } = useParams<{ userName: string }>();
-  const [bookmarks, createBookmark] = useBookmarks({ userName });
+  const [bookmarks, isFetchingBookmarks, createBookmark] = useBookmarks({ userName });
 
   return (
     <StyledWrapper>
       <CreateBookmarkModalContainer userName={userName} createBookmark={createBookmark} />
-      {bookmarks?.length === 0
-        ? <p>何もないよー</p>
+      {isFetchingBookmarks === true
+        ? (
+          <Loader active>Loading</Loader>
+        )
         : <BookmarksArea userName={userName} bookmarks={bookmarks} />}
     </StyledWrapper>
   );

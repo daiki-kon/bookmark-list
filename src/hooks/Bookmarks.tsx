@@ -5,14 +5,19 @@ import {
 
 export type UseBookmarksResponse = [
   FetchBookmarksResponse,
+  boolean,
+  // eslint-disable-next-line no-unused-vars
   (bookmarkURL: string, tagsIDs: string[]) => Promise<void>
 ]
 
 export const useBookmarks = ({ userName }:{userName: string}): UseBookmarksResponse => {
   const [bookmarks, setBookmarks] = useState<FetchBookmarksResponse>([]);
+  const [isFetching, setIsFetching] = useState<boolean>(true);
   const setFetchBookmarksResponse = async (name: string) => {
+    setIsFetching(true);
     const response: FetchBookmarksResponse = await fetchBookmarks({ userName: name });
     setBookmarks(response);
+    setIsFetching(false);
   };
 
   const createBookmark = async (bookmarkURL: string, tagsIDs: string[]): Promise<void> => {
@@ -33,5 +38,5 @@ export const useBookmarks = ({ userName }:{userName: string}): UseBookmarksRespo
     setFetchBookmarksResponse(userName);
   }, [userName]);
 
-  return [bookmarks, createBookmark];
+  return [bookmarks, isFetching, createBookmark];
 };
