@@ -18,13 +18,13 @@ const StyledForm = styled(Form)`
   position:relative;
   width: 100% !important;
   height: 100% !important;
-  max-width: 250px !important;
+  max-width: 240px !important;
 `;
 
 const StyledTextArea = styled(TextArea)`
   resize: none !important;
   min-height: 263px !important;
-  max-width: 250px !important;
+  max-width: 240px !important;
   width: 100%;
   height: 100%;
 `;
@@ -40,9 +40,14 @@ const StyledButton = styled(Button)`
 const StyledContainer = styled(Container)`
   resize: none !important;
   min-height: 263px !important;
-  max-width: 250px !important;
+  max-height: 244px;
+  max-width: 240px;
   width: 100%;
   height: 100%;
+
+  padding: .78571429em 1em;
+  word-break : break-all;
+  overflow-y: auto;
 `;
 
 export const CommentBox: FC<CommentBoxProps> = (props) => {
