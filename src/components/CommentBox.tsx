@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
 import {
   Form, TextArea, Button, Container,
 } from 'semantic-ui-react';
@@ -9,6 +9,7 @@ export type CommentBoxProps = {
   isEdit: boolean;
   commentMarkdown: string;
   commentHtml: string;
+  // eslint-disable-next-line no-unused-vars
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onClickSave: () => void;
   onClickEdit: () => void;
