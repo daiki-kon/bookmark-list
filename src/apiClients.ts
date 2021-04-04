@@ -55,6 +55,28 @@ export const fetchBookmarks = async (query: FetchBookmarksQuery): Promise<FetchB
   return response.data as FetchBookmarksResponse;
 };
 
+export type FetchTagsQuery = {
+  userName: string;
+}
+
+export type FetchTagsResponse = {
+  tagID: string;
+  tagName: string;
+}[];
+
+export const fetchTags = async (query: FetchTagsQuery): Promise<FetchTagsResponse> => {
+  const apiName = auth.API.endpoints[0].name;
+  const path = `/user/${query.userName}/tags`;
+  const parameter = {
+    response: true,
+    header: 'Content-Type: application/json',
+  };
+
+  const response = await API.get(apiName, path, parameter);
+
+  return response.data as FetchTagsResponse;
+};
+
 export type PostBookmarkRequest = {
   userName: string;
   requestBody: {
