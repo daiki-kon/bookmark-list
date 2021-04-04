@@ -23,9 +23,29 @@ export const useComment = (
     silent: false, // trueにするとパースに失敗してもExceptionを投げなくなる
   });
 
+  const isExistFile = async (fileName: string): Promise<boolean> => {
+    const responseList: object[] = await Storage.list(fileName);
+    if (responseList.length === 0) {
+      return false;
+    }
+
+    return true;
+  };
+
   // TODO: リファクタリング必須
   const getTextFromS3 = async (): Promise<void> => {
-    const fileURL = await Storage.get(`${userName}/${bookmarkID}.md`);
+    const fileName = `${userName}/${bookmarkID}.md`;
+    const isExist = await isExistFile(fileName);
+
+    // マークダウンファイルが未作成の場合
+    if (isExist === false) {
+      // TODO:メッセージを外部から渡すように変更
+      setCommentMarkdown('コメントの入力ができます。');
+
+      return;
+    }
+
+    const fileURL = await Storage.get(fileName);
 
     const response = await fetch(fileURL.toString());
     if (response.status === 404) return;
