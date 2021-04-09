@@ -17,7 +17,7 @@ const StyledTitle = styled.p`
   margin-left: 20px;
   margin-bottom: 0%;
   font-weight: bold;
-  font-size: 20px
+  font-size: 20px;
 `;
 
 const StyledUserName = styled.p`

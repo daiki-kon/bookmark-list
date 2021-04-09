@@ -14,7 +14,6 @@ export const useTags = (userName: any): UseTagsResponse => {
     setIsFetching(true);
     const response: FetchTagsResponse = await fetchTags({ userName: name });
     setTags(response);
-    console.log(response);
     setIsFetching(false);
   };
 

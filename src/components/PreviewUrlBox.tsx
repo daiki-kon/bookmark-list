@@ -12,7 +12,7 @@ export type PreviewUrlBoxProps = {
 }
 
 const StyledDiv = styled.div`
-  width: 200px !important;
+  width: 150px !important;
   position: relative;
 `;
 

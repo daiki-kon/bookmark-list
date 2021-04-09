@@ -7,6 +7,8 @@ import 'semantic-ui-css/semantic.min.css';
 import styled from 'styled-components';
 import { BookmarksArea } from '../components/BookmarksArea';
 import { useBookmarks } from '../hooks/Bookmarks';
+import { useTags } from '../hooks/Tags';
+import { SideMenu } from '../components/SideMenu';
 import { CreateBookmarkModalContainer } from '../containers/CreateBookmarkModalContainer';
 
 const StyledWrapper = styled.div`
@@ -18,14 +20,21 @@ export const BookmarksPage: FC = () => {
   const { userName } = useParams<{ userName: string }>();
   const [bookmarks, isFetchingBookmarks, createBookmark] = useBookmarks({ userName });
 
+  const [tags] = useTags(userName);
+
   return (
-    <StyledWrapper>
-      <CreateBookmarkModalContainer userName={userName} createBookmark={createBookmark} />
-      {isFetchingBookmarks === true
-        ? (
-          <Loader active>Loading</Loader>
-        )
-        : <BookmarksArea userName={userName} bookmarks={bookmarks} />}
-    </StyledWrapper>
+    <SideMenu tags={tags} onClickLabel={() => console.log('hoge')}>
+      <StyledWrapper>
+        <CreateBookmarkModalContainer userName={userName} createBookmark={createBookmark} />
+        {isFetchingBookmarks === true
+          ? (
+            <Loader active>Loading</Loader>
+          )
+          : (
+            <BookmarksArea userName={userName} bookmarks={bookmarks} />
+          )}
+      </StyledWrapper>
+    </SideMenu>
+
   );
 };

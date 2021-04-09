@@ -18,9 +18,9 @@ export type BookmarkBoxProps = {
 const Wrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  max-width: 450px;
+  max-width: 400px;
   margin-left: 20px;
-  margin-top: 10px;
+  margin-top: 20px;
   /* semantic ui と同じスタイルにする */
   border-radius: .28571429rem;
   box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;

@@ -26,6 +26,8 @@ const StyledTextArea = styled(TextArea)`
   resize: none !important;
   min-height: 263px !important;
   max-width: 240px !important;
+  min-width: 235px !important;
+  margin: 5px;
   width: 100%;
   height: 100%;
 `;
