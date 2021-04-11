@@ -1,12 +1,15 @@
 import { useEffect, useState } from 'react';
-import { fetchTags, FetchTagsResponse } from '../apiClients';
+import {
+  fetchTags, FetchTagsResponse, postTag, PostTagResponse,
+} from '../apiClients';
 
 export type UseTagsResponse = [
   FetchTagsResponse,
-  boolean
+  boolean,
+  (tagName: string) => Promise<void>,
 ];
 
-export const useTags = (userName: any): UseTagsResponse => {
+export const useTags = (userName: string): UseTagsResponse => {
   const [isFetching, setIsFetching] = useState<boolean>(false);
   const [tags, setTags] = useState<FetchTagsResponse>([]);
 
@@ -17,9 +20,14 @@ export const useTags = (userName: any): UseTagsResponse => {
     setIsFetching(false);
   };
 
+  const createTag = async (tagName: string): Promise<void> => {
+    const response: PostTagResponse = await postTag({ userName, tagName });
+    setTags((preState) => [...preState, { tagID: response.id, tagName: response.name }]);
+  };
+
   useEffect(() => {
     setFetchTagsResponse(userName);
   }, []);
 
-  return [tags, isFetching];
+  return [tags, isFetching, createTag];
 };

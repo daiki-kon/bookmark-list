@@ -22,6 +22,9 @@ type FormInput = {
   bookmarkURL: string;
 }
 
+// node.contains is not a function の回避
+const RefButton:FC = (props) => <StyledAddButton {...props} />;
+
 export const CreateBookmarkModal: FC<CreateBookmarkModalProps> = (props) => {
   const { userName, createBookmark } = props;
   const [isOpen, setIsOpen] = useState(false);
@@ -46,7 +49,7 @@ export const CreateBookmarkModal: FC<CreateBookmarkModalProps> = (props) => {
       onClose={() => setIsOpen(false)}
       onOpen={() => setIsOpen(true)}
       open={isOpen}
-      trigger={<StyledAddButton>追加</StyledAddButton>}
+      trigger={<RefButton>追加</RefButton>}
     >
       <Modal.Header>新しいBookmarkを追加</Modal.Header>
       <Modal.Content>

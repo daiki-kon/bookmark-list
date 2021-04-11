@@ -77,6 +77,32 @@ export const fetchTags = async (query: FetchTagsQuery): Promise<FetchTagsRespons
   return response.data as FetchTagsResponse;
 };
 
+export type PostTagRequest = {
+  userName: string;
+  tagName: string;
+}
+
+export type PostTagResponse = {
+  id: string;
+  name: string;
+}
+
+export const postTag = async (request: PostTagRequest): Promise<PostTagResponse> => {
+  const apiName = auth.API.endpoints[0].name;
+  const path = `/user/${request.userName}/tag`;
+  const parameter = {
+    response: true,
+    header: 'Content-Type: application/json',
+    body: {
+      tagName: request.tagName,
+    },
+  };
+
+  const response = await API.post(apiName, path, parameter);
+
+  return response.data as PostTagResponse;
+};
+
 export type PostBookmarkRequest = {
   userName: string;
   requestBody: {

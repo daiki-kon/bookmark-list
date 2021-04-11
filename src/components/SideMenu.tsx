@@ -1,14 +1,17 @@
 import React, { FC } from 'react';
 import {
-  Button, Modal, Form, Sidebar, Segment, Menu, Icon, Header, Image, Label,
+  Button, Modal, Form, Sidebar, Segment, Menu, Label,
 } from 'semantic-ui-react';
 import 'semantic-ui-css/semantic.min.css';
 import styled from 'styled-components';
 import { FetchTagsResponse } from '../apiClients';
+import { CreateTagModal } from './CreateTagModal';
+import { UseTagsResponse } from '../hooks/Tags';
 
 export type SideMenuProps = {
   tags: FetchTagsResponse;
   onClickLabel: () => void;
+  createTag: UseTagsResponse[2];
 }
 
 const StyledTagGroup = styled.div`
@@ -34,13 +37,15 @@ const StyledMenu = styled(Menu)`
 `;
 
 export const SideMenu: FC<SideMenuProps> = (props) => {
-  const { tags, onClickLabel, children } = props;
+  const {
+    tags, onClickLabel, children, createTag,
+  } = props;
 
   return (
 
     <Sidebar.Pushable as={StyledSegment}>
       <Sidebar
-        as={StyledMenu}
+        as={Menu}
         animation="push"
         icon="labeled"
         inverted
@@ -50,11 +55,12 @@ export const SideMenu: FC<SideMenuProps> = (props) => {
       >
         <StyledTagGroup>
           {tags.map((item) => (
-            <StyledTagLabel tag color="teal" onClick={onClickLabel}>
+            <StyledTagLabel tag color="teal" onClick={onClickLabel} key={item.tagID}>
               {item.tagName}
             </StyledTagLabel>
           ))}
         </StyledTagGroup>
+        <CreateTagModal createTag={createTag} />
       </Sidebar>
 
       <Sidebar.Pusher>
