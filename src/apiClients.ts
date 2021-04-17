@@ -113,7 +113,12 @@ export type PostBookmarkRequest = {
 
 export type PostBookmarkResponse = {
   bookmarkID: string;
+  bookmarkURL: string;
   registeredDate: string;
+  tags: {
+    name: string;
+    id: string;
+  }[]
 };
 
 // eslint-disable-next-line max-len

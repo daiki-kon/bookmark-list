@@ -30,7 +30,7 @@ export const useBookmarks = ({ userName }:{userName: string}): UseBookmarksRespo
         bookmarkID: response.bookmarkID,
         bookmarkURL,
         registeredDate: response.registeredDate,
-        tags: [],
+        tags: response.tags.map((item) => ({ tagID: item.id, tagName: item.name })),
       }]));
   };
 

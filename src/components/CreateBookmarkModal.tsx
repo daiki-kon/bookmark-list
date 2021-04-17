@@ -4,7 +4,7 @@
 import React, { FC, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import {
-  Button, Modal, Form,
+  Button, Modal, Form, Label,
 } from 'semantic-ui-react';
 import 'semantic-ui-css/semantic.min.css';
 import styled from 'styled-components';
@@ -12,6 +12,11 @@ import styled from 'styled-components';
 export type CreateBookmarkModalProps = {
   userName: string;
   createBookmark: (bookmarkURL: string, tagsIDs: string[]) => Promise<void>;
+  selectTagsOptions: {
+    key: string;
+    text: string;
+    value: string;
+  }[]
 }
 
 const StyledAddButton = styled(Button)`
@@ -26,9 +31,10 @@ type FormInput = {
 const RefButton:FC = (props) => <StyledAddButton {...props} />;
 
 export const CreateBookmarkModal: FC<CreateBookmarkModalProps> = (props) => {
-  const { userName, createBookmark } = props;
+  const { userName, createBookmark, selectTagsOptions } = props;
   const [isOpen, setIsOpen] = useState(false);
   const [url, setUrl] = useState<string>('');
+  const [tagsID, setTagsID] = useState<string[]>([]);
 
   const {
     register, errors, trigger, setValue,
@@ -43,6 +49,11 @@ export const CreateBookmarkModal: FC<CreateBookmarkModalProps> = (props) => {
       },
     );
   }, []);
+
+  const renderLabel = (label: any) => ({
+    color: 'teal',
+    content: `${label.text}`,
+  });
 
   return (
     <Modal
@@ -64,6 +75,15 @@ export const CreateBookmarkModal: FC<CreateBookmarkModalProps> = (props) => {
             }}
             error={errors?.bookmarkURL !== undefined}
           />
+          <Form.Dropdown
+            label="Select Tag"
+            fluid
+            multiple
+            selection
+            options={selectTagsOptions}
+            renderLabel={renderLabel}
+            onChange={(e, { value }) => { setTagsID(value as string[]); }}
+          />
         </Form>
       </Modal.Content>
       <Modal.Actions>
@@ -81,7 +101,7 @@ export const CreateBookmarkModal: FC<CreateBookmarkModalProps> = (props) => {
             if (result === false) return;
             setValue('bookmarkURL', '');
             setIsOpen(false);
-            createBookmark(url, []);
+            createBookmark(url, tagsID);
           }}
         />
       </Modal.Actions>

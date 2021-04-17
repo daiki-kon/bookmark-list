@@ -25,7 +25,11 @@ export const BookmarksPage: FC = () => {
   return (
     <SideMenu tags={tags} createTag={createTag} onClickLabel={() => console.log('hoge')}>
       <StyledWrapper>
-        <CreateBookmarkModalContainer userName={userName} createBookmark={createBookmark} />
+        <CreateBookmarkModalContainer
+          userName={userName}
+          createBookmark={createBookmark}
+          tags={tags}
+        />
         {isFetchingBookmarks === true
           ? (
             <Loader active>Loading</Loader>
