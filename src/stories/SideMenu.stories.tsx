@@ -25,12 +25,12 @@ const Template: Story<SideMenuProps> = (args) => (
 export const Primary = Template.bind({});
 Primary.args = {
   tags: [{
-    tagID: 'hoge',
-    tagName: 'hoge',
+    id: 'hoge',
+    name: 'hoge',
   },
   {
-    tagID: 'fuga',
-    tagName: 'fuga',
+    id: 'fuga',
+    name: 'fuga',
   }],
 
 };

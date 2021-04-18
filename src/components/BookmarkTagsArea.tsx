@@ -12,6 +12,7 @@ export type BookmarkTagsAreaProps = {
 
 const Wrapper = styled.div`
   display: flex;
+  overflow-x: auto;
 `;
 
 const StyledTagLabel = styled(Label)`

@@ -13,9 +13,9 @@ export const CreateBookmarkModalContainer: FC<CreateBookmarkModalContainerProps>
   const { userName, createBookmark, tags } = props;
 
   const selectTagsOptions = tags.map((item) => ({
-    key: item.tagID,
-    text: item.tagName,
-    value: item.tagID,
+    key: item.id,
+    text: item.name,
+    value: item.id,
   }));
 
   return (

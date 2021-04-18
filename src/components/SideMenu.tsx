@@ -55,8 +55,8 @@ export const SideMenu: FC<SideMenuProps> = (props) => {
       >
         <StyledTagGroup>
           {tags.map((item) => (
-            <StyledTagLabel tag color="teal" onClick={onClickLabel} key={item.tagID}>
-              {item.tagName}
+            <StyledTagLabel tag color="teal" onClick={onClickLabel} key={item.id}>
+              {item.name}
             </StyledTagLabel>
           ))}
         </StyledTagGroup>

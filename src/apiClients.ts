@@ -35,10 +35,7 @@ export type FetchBookmarksResponse = {
   bookmarkID: string;
   bookmarkURL: string;
   registeredDate: string;
-  tags: {
-    tagID: string;
-    tagName: string;
-  }[]
+  tags: PostTagResponse[];
 }[];
 
 // eslint-disable-next-line max-len
@@ -60,8 +57,8 @@ export type FetchTagsQuery = {
 }
 
 export type FetchTagsResponse = {
-  tagID: string;
-  tagName: string;
+  id: string;
+  name: string;
 }[];
 
 export const fetchTags = async (query: FetchTagsQuery): Promise<FetchTagsResponse> => {

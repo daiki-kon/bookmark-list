@@ -22,7 +22,7 @@ export const useTags = (userName: string): UseTagsResponse => {
 
   const createTag = async (tagName: string): Promise<void> => {
     const response: PostTagResponse = await postTag({ userName, tagName });
-    setTags((preState) => [...preState, { tagID: response.id, tagName: response.name }]);
+    setTags((preState) => [...preState, { id: response.id, name: response.name }]);
   };
 
   useEffect(() => {

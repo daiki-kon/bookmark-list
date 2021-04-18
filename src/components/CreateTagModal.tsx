@@ -37,6 +37,7 @@ export const CreateTagModal: FC<CreateTagModalProps> = (props) => {
       'tagName',
       {
         required: true,
+        maxLength: 10,
       },
     );
   }, []);
