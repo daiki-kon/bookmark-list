@@ -10,7 +10,7 @@ import { UseTagsResponse } from '../hooks/Tags';
 
 export type SideMenuProps = {
   tags: FetchTagsResponse;
-  onClickLabel: () => void;
+  onClickLabel: (tagId: string) => void;
   createTag: UseTagsResponse[2];
 }
 
@@ -55,7 +55,7 @@ export const SideMenu: FC<SideMenuProps> = (props) => {
       >
         <StyledTagGroup>
           {tags.map((item) => (
-            <StyledTagLabel tag color="teal" onClick={onClickLabel} key={item.id}>
+            <StyledTagLabel tag color="teal" onClick={() => onClickLabel(item.id)} key={item.id}>
               {item.name}
             </StyledTagLabel>
           ))}

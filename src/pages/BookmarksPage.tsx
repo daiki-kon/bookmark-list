@@ -18,12 +18,17 @@ const StyledWrapper = styled.div`
 
 export const BookmarksPage: FC = () => {
   const { userName } = useParams<{ userName: string }>();
-  const [bookmarks, isFetchingBookmarks, createBookmark] = useBookmarks({ userName });
+  const [bookmarks, isFetchingBookmarks, createBookmark, filterTag] = useBookmarks({ userName });
 
   const [tags, , createTag] = useTags(userName);
 
   return (
-    <SideMenu tags={tags} createTag={createTag} onClickLabel={() => console.log('hoge')}>
+    // eslint-disable-next-line max-len
+    <SideMenu
+      tags={tags}
+      createTag={createTag}
+      onClickLabel={filterTag}
+    >
       <StyledWrapper>
         <CreateBookmarkModalContainer
           userName={userName}

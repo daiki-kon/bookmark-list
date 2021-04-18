@@ -17,9 +17,6 @@ const Wrapper = styled.div`
 
 const StyledTagLabel = styled(Label)`
   margin-right: 10px !important;
-  :hover {
-    cursor: pointer;
-  }
 `;
 
 export const BookmarkTagsArea: FC<BookmarkTagsAreaProps> = (props) => {
